@@ -7,6 +7,7 @@ import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { Notes } from "@/components/Notes";
 import { Achievements } from "@/components/Achievements";
+import { Hobbies } from "@/components/Hobbies";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -24,6 +25,10 @@ export default function Home() {
         <section className="container-page grid grid-cols-1 gap-12 pb-20 sm:pb-24 lg:grid-cols-2 lg:gap-16">
           <Education />
           <Skills />
+        </section>
+
+        <section className="container-page pb-20 sm:pb-24">
+          <Hobbies />
         </section>
 
         <Projects />
