@@ -47,14 +47,14 @@ export const EDUCATION = [
     // TODO: swap in your real school/institution.
     institution: "Secondary School",
     description:
-      "Focused track in mathematics and informatics — most of the week spent between proofs and problem sets.",
+      "Focused track in algorithms and the new techniques — most of the week spent between proofs and problem sets.",
     link: undefined as string | undefined,
   },
   {
     year: "2018 – 2023",
     institution: "Primary School",
     description:
-      "First contact with programming: Scratch and Python in class, C++ after class, and a slowly growing habit of finishing what I start.",
+      "First contact with programming: Scratch in class, Python after class, and a slowly growing habit of finishing what I start.",
     link: undefined as string | undefined,
   },
 ];
