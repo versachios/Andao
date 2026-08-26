@@ -66,7 +66,7 @@ export const SKILLS = [
   },
   {
     category: "Algorithms",
-    items: ["DP", "Graphs", "DFS / BFS", "Dijkstra", "Data Structures"],
+    items: ["DP", "BSOA", "Data Structures"],
   },
   {
     category: "Development",

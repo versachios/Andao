@@ -1,3 +1,4 @@
+/*
 import { HOBBIES } from "@/lib/data";
 import { Reveal } from "./Reveal";
 
@@ -25,3 +26,4 @@ export function Hobbies() {
     </div>
   );
 }
+*/

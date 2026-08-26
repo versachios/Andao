@@ -7,7 +7,7 @@ import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { Notes } from "@/components/Notes";
 import { Achievements } from "@/components/Achievements";
-import { Hobbies } from "@/components/Hobbies";
+//import { Hobbies } from "@/components/Hobbies";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -28,7 +28,6 @@ export default function Home() {
         </section>
 
         <section className="container-page pb-20 sm:pb-24">
-          <Hobbies />
         </section>
 
         <Projects />
