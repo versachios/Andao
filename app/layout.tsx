@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SITE } from "@/lib/data";
@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: `${SITE.name}`,
   description:
     "Personal site.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#232019",
 };
 
 // Defaults to light on first visit regardless of OS preference — only an
