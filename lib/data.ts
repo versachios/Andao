@@ -106,6 +106,19 @@ export const PROJECTS = [
   },
 ];
 
+// A little corkboard of photos — pinned polaroids with a caption each.
+// Drop real photos in /public/moments/ and point `image` at them, e.g.
+// "/moments/award-day.jpg". Leave `image` unset to show a placeholder frame.
+export const MOMENTS: {
+  title: string;
+  image?: string;
+  rotate: number;
+}[] = [
+  { title: "Wrong Answer VNOI", image: "/moments/wa.png", rotate: -3 },
+  { title: "ACADEMIC IT 2026", image: "/moments/team26.jpg",rotate: 2 },
+  { title: "Sunset in my tea pot", image: "moments/genshinteapot.png" ,rotate: -1.5 },
+];
+
 export const NOTES = [
   {
     index: "01",

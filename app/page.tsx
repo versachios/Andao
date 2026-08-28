@@ -9,6 +9,7 @@ import { Notes } from "@/components/Notes";
 import { Achievements } from "@/components/Achievements";
 //import { Hobbies } from "@/components/Hobbies";
 import { Footer } from "@/components/Footer";
+import { Moments } from "@/components/Moments";
 
 export default function Home() {
   return (
@@ -31,8 +32,11 @@ export default function Home() {
         </section>
 
         <Projects />
+        <Moments />
         <Notes />
+        
         <Achievements />
+        
       </main>
       <Footer />
     </>
