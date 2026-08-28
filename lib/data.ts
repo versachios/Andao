@@ -114,7 +114,7 @@ export const MOMENTS: {
   image?: string;
   rotate: number;
 }[] = [
-  { title: "Wrong Answer VNOI", image: "/moments/wa.png", rotate: -3 },
+  { title: "Wrong Answer VNOI", image: "/moments/WA.png", rotate: -3 },
   { title: "ACADEMIC IT 2026", image: "/moments/team26.jpg",rotate: 2 },
   { title: "Sunset in my tea pot", image: "moments/genshinteapot.png" ,rotate: -1.5 },
 ];
