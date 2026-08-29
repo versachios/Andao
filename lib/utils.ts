@@ -2,7 +2,6 @@ export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-/** Calculates age in full years from a birthdate, as of "now". */
 export function calculateAge(birthDateISO: string, now: Date = new Date()): number {
   const birth = new Date(birthDateISO);
   let age = now.getFullYear() - birth.getFullYear();
