@@ -20,7 +20,7 @@ export function PersonalDetails() {
     { label: "Focus", value: SITE.focus },
     { label: "Currently", value: SITE.currently },
     { label: "Local time", value: now ? formatTime(now, SITE.timeZone) : "—" },
-    { label: "Status", value: "Always learning" },
+    { label: "Status", value: "Try my hardest to get into HVT :>" },
   ];
 
   return (

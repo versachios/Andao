@@ -8,7 +8,7 @@ export const SITE = {
   name: "Versachios",
   // TODO: set your real birthdate — this drives the "Age" field automatically.
   birthDateISO: "2012-02-16",
-  location: "Vietnam",
+  location: "Phu Tho, Vietnam",
   timeZone: "Asia/Ho_Chi_Minh",
   focus: "Competitive Programming · Web Development",
   currently: "Learning algorithms, shipping side projects",
@@ -44,10 +44,9 @@ export const NAV = [
 export const EDUCATION = [
   {
     year: "2023 – 2027",
-    // TODO: swap in your real school/institution.
     institution: "Secondary School",
     description:
-      "Focused track in algorithms and the new techniques — most of the week spent between proofs and problem sets.",
+      "Focused track in algorithms and the new techniques — most of the time spent between proofs and problem sets.",
     link: undefined as string | undefined,
   },
   {
@@ -104,11 +103,17 @@ export const PROJECTS = [
     github: "https://github.com/versachios/HVTCoder",
     demo: "https://hvtcoder.pages.dev/",
   },
+  {
+    number: "02",
+    name: "Algoverse",
+    description:
+      "An AI-assisted judge for competitive programmers — submit a problem and your C++ or Python solution, get back complexity analysis, likely bugs, edge cases, and hints instead of a bare verdict.",
+    tech: ["Next.js", "Tailwind", "Threejs", "React"],
+    github: "https://github.com/versachios/Algoverse",
+    demo: "https://hvt-algoverse.pages.dev/",
+  },
 ];
 
-// A little corkboard of photos — pinned polaroids with a caption each.
-// Drop real photos in /public/moments/ and point `image` at them, e.g.
-// "/moments/award-day.jpg". Leave `image` unset to show a placeholder frame.
 export const MOMENTS: {
   title: string;
   image?: string;
@@ -117,6 +122,7 @@ export const MOMENTS: {
   { title: "Wrong Answer VNOI", image: "/moments/WA.png", rotate: -3 },
   { title: "ACADEMIC IT 2026", image: "/moments/team26.jpg",rotate: 2 },
   { title: "Sunset in my tea pot", image: "moments/genshinteapot.png" ,rotate: -1.5 },
+  { title: "Amphoreus in Algoverse", image: "/moments/amphoreus.png",rotate: 3.5 },
 ];
 
 export const NOTES = [
