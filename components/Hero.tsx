@@ -2,6 +2,7 @@ import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { SITE } from "@/lib/data";
 import { HeroMark } from "./art/HeroMark";
 import { FontCycle } from "./FontCycle";
+import { SocialLinks } from "./SocialLinks";
 
 export function Hero() {
   return (
@@ -29,7 +30,9 @@ export function Hero() {
           development.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <SocialLinks className="mt-9" />
+
+        <div className="mt-6 flex flex-wrap items-center gap-4">
           <a
             href="#projects"
             className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm text-paper transition-colors duration-300 hover:bg-ember dark:bg-cream dark:text-charcoal dark:hover:bg-ember-dark"

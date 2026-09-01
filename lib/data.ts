@@ -1,12 +1,5 @@
-// ---------------------------------------------------------------------------
-// Every piece of personal content lives in this file on purpose — edit here,
-// nothing else. Fields marked TODO are placeholders: swap them for your own
-// details before shipping.
-// ---------------------------------------------------------------------------
-
 export const SITE = {
   name: "Versachios",
-  // TODO: set your real birthdate — this drives the "Age" field automatically.
   birthDateISO: "2012-02-16",
   location: "Phu Tho, Vietnam",
   timeZone: "Asia/Ho_Chi_Minh",
@@ -14,16 +7,10 @@ export const SITE = {
   currently: "Learning algorithms, shipping side projects",
   status: "Building" as "Building" | "Available",
   github: "https://github.com/versachios",
-  // TODO: replace with your real Codeforces handle.
   codeforces: "https://codeforces.com/profile/justme_tann",
-  // TODO: replace with a real inbox.
   email: "alterlew@gmail.com",
 };
 
-// Shown in the footer's "Elsewhere" section.
-// NOTE: the Discord entry is a placeholder — Discord profile URLs need your
-// numeric user ID or a real invite link, a @username alone won't resolve.
-// Swap it for your actual link before shipping.
 export const SOCIALS: { label: string; href: string }[] = [
   { label: "Facebook", href: "https://www.facebook.com/versachios/" },
   { label: "GitHub", href: "https://github.com/versachios" },
@@ -81,7 +68,6 @@ export const SKILLS = [
   },
 ];
 
-// TODO: swap these placeholders for your real hobbies/interests.
 export const HOBBIES: string[] = [
   "Gaming",
   "Anime",
@@ -90,9 +76,6 @@ export const HOBBIES: string[] = [
   "Reading",
 ];
 
-// NOTE: only public/open-source work is listed here on purpose. Add more
-// entries as they go public — the layout adapts from one project up to a
-// full grid.
 export const PROJECTS = [
   {
     number: "01",
@@ -176,9 +159,6 @@ export const NOTES = [
   },
 ];
 
-// Icon options: "trophy" | "medal" | "award" | "star" | "target" | "flag"
-// pick whichever fits each entry — see the map in components/Achievements.tsx.
-// TODO: this is placeholder content — replace with your real contest results and milestones.
 export const ACHIEVEMENTS: {
   date: string;
   title: string;

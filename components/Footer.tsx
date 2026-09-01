@@ -1,5 +1,5 @@
-import { ExternalLink, Mail } from "lucide-react";
-import { SITE, SOCIALS } from "@/lib/data";
+import { Mail } from "lucide-react";
+import { SITE } from "@/lib/data";
 
 export function Footer() {
   return (
@@ -14,28 +14,14 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="label mb-3">Elsewhere</p>
-            <div className="flex max-w-xs flex-wrap gap-x-5 gap-y-2 sm:max-w-sm sm:justify-end">
-              {SOCIALS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1 font-mono text-xs text-ink-faint transition-colors duration-300 hover:text-ink dark:text-cream-faint dark:hover:text-cream"
-                >
-                  {social.label}
-                  <ExternalLink size={11} />
-                </a>
-              ))}
-              <a
-                href={`mailto:${SITE.email}`}
-                className="inline-flex items-center gap-1 font-mono text-xs text-ink-faint transition-colors duration-300 hover:text-ink dark:text-cream-faint dark:hover:text-cream"
-              >
-                Email
-                <Mail size={11} />
-              </a>
-            </div>
+            <p className="label mb-3">Contact</p>
+            <a
+              href={`mailto:${SITE.email}`}
+              className="inline-flex items-center gap-1 font-mono text-xs text-ink-faint transition-colors duration-300 hover:text-ink dark:text-cream-faint dark:hover:text-cream"
+            >
+              Email
+              <Mail size={11} />
+            </a>
           </div>
         </div>
 
