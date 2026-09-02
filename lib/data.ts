@@ -90,7 +90,7 @@ export const PROJECTS = [
     number: "02",
     name: "Algoverse",
     description:
-      "An AI-assisted judge for competitive programmers — submit a problem and your C++ or Python solution, get back complexity analysis, likely bugs, edge cases, and hints instead of a bare verdict.",
+      "An interactive learning platform for data structures and algorithms — explore concepts through immersive 2.5D and 3D visualizations designed to make complex algorithms easier to understand.",
     tech: ["Next.js", "Tailwind", "Threejs", "React"],
     github: "https://github.com/versachios/Algoverse",
     demo: "https://hvt-algoverse.pages.dev/",
