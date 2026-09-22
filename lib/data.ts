@@ -145,7 +145,7 @@ export const NOTES = [
     index: "05",
     date: "Summer 2026",
     category: "CP",
-    title: "Road to K81 IT",
+    title: "Road to K80 IT",
     excerpt:
       "I have worked through a great many entrance exam papers for specialized schools across various provinces. I have learned so much, and this marks a major step toward getting into the school of my dreams.",
   },
