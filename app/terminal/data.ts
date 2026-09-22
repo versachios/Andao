@@ -140,15 +140,18 @@ export const achievements = [
   },
 ];
 
-export const contacts = [
-  { label: "email", text: "alterlew@gmail.com", href: "mailto:alterlew@gmail.com" },
-  { label: "github", text: "versachios", href: "https://github.com/versachios" },
-  { label: "codeforces", text: "justme_tann", href: "https://codeforces.com/profile/justme_tann" },
-  { label: "vnoj", text: "justme_tann", href: "https://oj.vnoi.info/user/justme_tann" },
-  { label: "clueoj", text: "justme_tann", href: "https://oj.clue.edu.vn/user/justme_tann" },
-  { label: "discord", text: "justme_tann", href: "https://discord.com/users/justme_tann" },
-  { label: "tiktok", text: "@justme_tann", href: "https://www.tiktok.com/@justme_tann" },
-  { label: "facebook", text: "versachios", href: "https://www.facebook.com/versachios/" },
+export type ContactIcon = "mail" | "github" | "codeforces" | "tiktok" | "facebook" | "tag";
+
+// Discord is handled separately (see DiscordPresence.tsx) since it opens a
+// live-status popover instead of a link.
+export const contacts: { label: string; text: string; href: string; icon: ContactIcon; tag?: string }[] = [
+  { label: "email", text: "alterlew@gmail.com", href: "mailto:alterlew@gmail.com", icon: "mail" },
+  { label: "github", text: "versachios", href: "https://github.com/versachios", icon: "github" },
+  { label: "codeforces", text: "justme_tann", href: "https://codeforces.com/profile/justme_tann", icon: "codeforces" },
+  { label: "vnoj", text: "justme_tann", href: "https://oj.vnoi.info/user/justme_tann", icon: "tag", tag: "VN" },
+  { label: "clueoj", text: "justme_tann", href: "https://oj.clue.edu.vn/user/justme_tann", icon: "tag", tag: "CL" },
+  { label: "tiktok", text: "@justme_tann", href: "https://www.tiktok.com/@justme_tann", icon: "tiktok" },
+  { label: "facebook", text: "versachios", href: "https://www.facebook.com/versachios/", icon: "facebook" },
 ];
 
 // targets for the `open <name>` command in the prompt

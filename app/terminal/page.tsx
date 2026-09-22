@@ -12,6 +12,10 @@ import { Clock } from "./components/Clock";
 import { Moments } from "./components/Moments";
 import { Neofetch } from "./components/Neofetch";
 import { Cmd } from "./components/Ps1";
+import { DiscordPresence } from "./components/DiscordPresence";
+import { TagIcon } from "./components/Icons";
+import { Mail } from "lucide-react";
+import { SiCodeforces, SiFacebook, SiGithub, SiTiktok } from "react-icons/si";
 import { Prompt } from "./components/Prompt";
 import { AlgoverseShot, HvtShot } from "./components/Shots";
 import { Visuals } from "./components/Visuals";
@@ -180,20 +184,27 @@ export default function TerminalPage() {
         {/* CONTACT */}
         <section className="tm-blk tm-s-contact" id="contact">
           <Cmd>cat contact.txt</Cmd>
-          <div className="tm-contact">
+          <div className="tm-contact-icons">
             {contacts.map((c) => (
-              <div className="tm-crow" key={c.label}>
-                <span className="tm-ck">{c.label}</span>
-                <a
-                  href={c.href}
-                  {...(c.href.startsWith("http")
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  {c.text}
-                </a>
-              </div>
+              <a
+                key={c.label}
+                className="tm-cicon"
+                href={c.href}
+                title={`${c.label}: ${c.text}`}
+                aria-label={`${c.label}: ${c.text}`}
+                {...(c.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {c.icon === "mail" && <Mail size={22} strokeWidth={1.6} />}
+                {c.icon === "github" && <SiGithub />}
+                {c.icon === "codeforces" && <SiCodeforces />}
+                {c.icon === "tiktok" && <SiTiktok />}
+                {c.icon === "facebook" && <SiFacebook />}
+                {c.icon === "tag" && <TagIcon label={c.tag ?? "?"} />}
+              </a>
             ))}
+            <DiscordPresence />
           </div>
         </section>
 
