@@ -30,17 +30,24 @@ export const NAV = [
 
 export const EDUCATION = [
   {
-    year: "2023 – 2027",
-    institution: "Secondary School",
+    year: "2027 – 2030",
+    institution: " ? High School",
     description:
-      "Focused track in algorithms and the new techniques — most of the time spent between proofs and problem sets.",
+      "Maybe Hoang Van Thu High School for the Gifted, who knows?",
+    link: undefined as string | undefined,
+  },
+  {
+    year: "2023 – 2027",
+    institution: "Huu Nghi Secondary School",
+    description:
+      "Focused track in algorithms and the new techniques — most of the time spent between proofs and problem sets. Now Song Da Secondary School.",
     link: undefined as string | undefined,
   },
   {
     year: "2018 – 2023",
-    institution: "Primary School",
+    institution: "Vo Thi Sau -> Huu Nghi Primary School",
     description:
-      "First contact with programming: Scratch in class, Python after class, and a slowly growing habit of finishing what I start.",
+      "First contact with programming: Scratch in class, Python after class, and a slowly growing habit of finishing what I start. Now Song Da Primary School.",
     link: undefined as string | undefined,
   },
 ];
