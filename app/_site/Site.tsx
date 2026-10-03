@@ -182,7 +182,7 @@ export default function Site() {
                     {education.map((e) => (
                       <div className="pf-sch" key={e.title}>
                         <b>{e.title[0]}</b>
-                        <div><h3>{e.title}</h3><p>{e.years}</p></div>
+                        <div><h3>{e.title}</h3><p className="pf-yr pf-mono">{e.years}</p><p>{e.body}</p></div>
                       </div>
                     ))}
                   </div>
