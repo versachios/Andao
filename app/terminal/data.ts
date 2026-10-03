@@ -17,14 +17,19 @@ export const aboutFacts = [
 
 export const education = [
   {
-    years: "2023-2027",
-    title: "Secondary School",
-    body: "Focused track in algorithms and the new techniques, with most of the time spent between proofs and problem sets.",
+    years: "2027–2030",
+    title: " ? High School",
+    body: "Maybe Hoang Van Thu High School for the Gifted, who knows?",
   },
   {
-    years: "2018-2023",
-    title: "Primary School",
-    body: "First contact with programming: Scratch in class, Python after class, and a slowly growing habit of finishing what I start.",
+    years: "2023–2027",
+    title: " Huu Nghi Secondary School",
+    body: "First step in CP since the advice. Now Song Da Secondary School.",
+  },
+  {
+    years: "2018–2023",
+    title: " Vo Thi Sau -> Huu Nghi Primary School",
+    body: "First contact in Python. Now Song Da Primary School.",
   },
 ];
 
