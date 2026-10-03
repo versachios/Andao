@@ -1,12 +1,7 @@
-import "./terminal/terminal.css";
-import TerminalPage from "./terminal/page";
-import { ThemeInit } from "./terminal/components/ThemeInit";
+import "./_site/site.css";
+import Site from "./_site/Site";
 
+// The previous terminal design still lives at /terminal.
 export default function Home() {
-  return (
-    <div className="tm-root">
-      <ThemeInit />
-      <TerminalPage />
-    </div>
-  );
+  return <Site />;
 }

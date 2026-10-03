@@ -11,7 +11,7 @@ import { SiDiscord } from "react-icons/si";
  * live data. DISCORD_USER_ID is your numeric Discord user ID (enable
  * Developer Mode in Discord, then "Copy User ID" from your profile).
  */
-const DISCORD_USER_ID = "1129650326333558874"; // <-- replace with your Discord user ID
+export const DISCORD_USER_ID = "1129650326333558874"; // <-- replace with your Discord user ID
 
 type LanyardStatus = "online" | "idle" | "dnd" | "offline";
 
