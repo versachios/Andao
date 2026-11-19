@@ -2,16 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-// Sharp / technical faces only. The box around the name has a fixed height and
-// never wraps, so cycling fonts cannot change the page layout or scroll position.
+// The box around the name has a fixed height and never wraps, so cycling
+// fonts cannot change the page layout or scroll position.
 const FONTS: { family: string; weight: number }[] = [
+  { family: "Fraunces", weight: 500 },
   { family: "Space Grotesk", weight: 700 },
   { family: "JetBrains Mono", weight: 600 },
-  { family: "Orbitron", weight: 700 },
-  { family: "Chakra Petch", weight: 700 },
-  { family: "Share Tech Mono", weight: 400 },
-  { family: "Archivo Black", weight: 400 },
-  { family: "Space Mono", weight: 700 },
 ];
 
 export function NameCycle({ text, intervalMs = 2200 }: { text: string; intervalMs?: number }) {
@@ -27,7 +23,7 @@ export function NameCycle({ text, intervalMs = 2200 }: { text: string; intervalM
 
   const f = FONTS[i];
   return (
-    <h1 className="pf-name" style={{ fontFamily: `"${f.family}", sans-serif`, fontWeight: f.weight }}>
+    <h1 className="pf-nm" style={{ fontFamily: `"${f.family}", sans-serif`, fontWeight: f.weight }}>
       {text}
     </h1>
   );

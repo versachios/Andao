@@ -68,18 +68,16 @@ export function Discord() {
 
   return (
     <div className="pf-dc" ref={box}>
-      <a
-        role="button"
-        tabIndex={0}
-        className="pf-ci"
-        data-t="Discord"
+      <button
+        type="button"
+        className="pf-lkrow"
         aria-label="Discord: live presence"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setOpen((v) => !v)}
       >
-        <SiDiscord />
-      </a>
+        <span>discord</span>
+        <i className="pf-mono">justme_tann <SiDiscord /></i>
+      </button>
       {open && (
         <div className="pf-dc-pop" role="dialog" aria-label="Discord presence">
           {state === "loading" && <p>connecting to lanyard...</p>}

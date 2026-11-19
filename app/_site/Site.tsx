@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Mail } from "lucide-react";
-import { SiCodeforces, SiFacebook, SiGithub, SiTiktok } from "react-icons/si";
+import { ReactNode, useEffect, useState } from "react";
 import {
   aboutFacts,
   achievements,
@@ -14,47 +12,60 @@ import {
   projects,
   skillGroups,
 } from "../terminal/data";
-import { TagIcon } from "../terminal/components/Icons";
 import { Discord } from "./Discord";
 import { Dict, Lang, T } from "./i18n";
+import { MiniSort } from "./MiniSort";
 import { NameCycle } from "./NameCycle";
 import { SortViz } from "./SortViz";
 
 type Tab = "home" | "about" | "viz" | "notes";
-const TABS: { id: Tab; icon: string; key: keyof Dict }[] = [
-  { id: "home", icon: "🏠", key: "nHome" },
-  { id: "about", icon: "🔍", key: "nAbout" },
-  { id: "viz", icon: "🔗", key: "nViz" },
-  { id: "notes", icon: "📔", key: "nNotes" },
+const TABS: { id: Tab; key: keyof Dict }[] = [
+  { id: "home", key: "nHome" },
+  { id: "about", key: "nAbout" },
+  { id: "viz", key: "nViz" },
+  { id: "notes", key: "nNotes" },
 ];
 
-const BUBBLES = ["compiling…", "AC ✔", "WA on test 7 :(", "sudo make coffee", "one more problem…"];
 const STORE = { lang: "pf-lang", theme: "pf-theme" };
-
+const ROT = ["-4deg", "3deg", "-2deg", "4deg"];
 const fact = (k: string) => aboutFacts.find((f) => f.key === k)?.value ?? "";
-const POLAROID_ROT = ["-4deg", "3deg", "-2deg", "4deg"];
 
-function Contacts() {
+// notes + achievements merged into one newest-first timeline
+type FeedItem = { sort: string; label: string; tag: string; title: string; body: string };
+const FEED: FeedItem[] = [
+  ...notes.map((n) => ({ sort: n.date, label: n.date, tag: n.tag, title: n.title, body: n.body })),
+  ...achievements.map((a) => ({ sort: `${a.year}-06-30`, label: a.year, tag: "win", title: a.title, body: a.body })),
+].sort((a, b) => b.sort.localeCompare(a.sort));
+
+function Card({ k, title, children }: { k: string; title: string; children: ReactNode }) {
   return (
-    <div className="pf-ct">
-      {contacts.map((c) => (
-        <a
-          key={c.label}
-          className="pf-ci"
-          data-t={c.label}
-          href={c.href}
-          aria-label={`${c.label}: ${c.text}`}
-          {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        >
-          {c.icon === "mail" && <Mail size={18} strokeWidth={1.8} />}
-          {c.icon === "github" && <SiGithub />}
-          {c.icon === "codeforces" && <SiCodeforces />}
-          {c.icon === "tiktok" && <SiTiktok />}
-          {c.icon === "facebook" && <SiFacebook />}
-          {c.icon === "tag" && <TagIcon label={c.tag ?? "?"} width={20} height={20} />}
-        </a>
+    <section className={`pf-c pf-k-${k}`}>
+      <div className="pf-tb"><b>{title}</b></div>
+      <div className="pf-bd">{children}</div>
+    </section>
+  );
+}
+
+function Row({ a, b, mono }: { a: string; b: ReactNode; mono?: boolean }) {
+  return (
+    <div className="pf-row">
+      <span>{a}</span>
+      <span className={mono ? "pf-mono" : undefined}>{b}</span>
+    </div>
+  );
+}
+
+function Feed({ n }: { n: number }) {
+  return (
+    <div className="pf-tl">
+      {FEED.slice(0, n).map((f) => (
+        <article key={f.sort + f.title}>
+          <time className="pf-mono">{f.label}</time>
+          <span className="pf-tg">{f.tag}</span>
+          <h3>{f.title}</h3>
+          <p>{f.body}</p>
+        </article>
       ))}
-      <Discord />
     </div>
   );
 }
@@ -64,7 +75,6 @@ export default function Site() {
   const [lang, setLang] = useState<Lang>("en");
   const [theme, setTheme] = useState<"light" | "dark" | null>(null); // null = follow the OS
   const [clock, setClock] = useState("--:--");
-  const [bubble, setBubble] = useState(0);
   const [hasAvatar, setHasAvatar] = useState(false);
   const t = T[lang];
 
@@ -118,29 +128,7 @@ export default function Site() {
   return (
     <div className="pf-root" data-theme={theme ?? undefined}>
       <div className="pf-wrap">
-        <header className="pf-box">
-          <div className="pf-cover" />
-          <div className="pf-prof">
-            <div className="pf-avw">
-              <button
-                className="pf-av"
-                aria-label="Avatar"
-                onClick={() => setBubble((n) => n + 1)}
-                style={hasAvatar ? { backgroundImage: "url(/avatar.jpg)" } : undefined}
-              >
-                {!hasAvatar && "V"}
-              </button>
-              <span className="pf-bub pf-mono">{bubble === 0 ? "hi!" : BUBBLES[(bubble - 1) % BUBBLES.length]}</span>
-            </div>
-            <div className="pf-who">
-              <NameCycle text="Versachios" />
-              <p className="pf-mono">andao@archlinux · {t.stat}</p>
-            </div>
-            <Contacts />
-          </div>
-        </header>
-
-        <nav className="pf-box pf-nav" aria-label="Sections">
+        <nav className="pf-nav" aria-label="Sections">
           <div className="pf-tabs">
             {TABS.map((x) => (
               <button
@@ -149,7 +137,7 @@ export default function Site() {
                 aria-current={tab === x.id ? "page" : undefined}
                 onClick={() => setTab(x.id)}
               >
-                {x.icon} {t[x.key]}
+                {t[x.key]}
               </button>
             ))}
           </div>
@@ -161,141 +149,139 @@ export default function Site() {
 
         <main>
           {tab === "home" && (
-            <section className="pf-view">
-              <div className="pf-home">
-                <div>
-                  <div className="pf-box pf-tilt">
-                    <h2>{t.detH}</h2>
-                    <div className="pf-row"><span>{t.dFocus}</span><span>{fact("focus")}</span></div>
-                    <div className="pf-row"><span>{t.dCountry}</span><span>Vietnam</span></div>
-                    <div className="pf-row"><span>{t.dStatus}</span><span>{fact("status")}</span></div>
-                    <div className="pf-row"><span>{t.dTime}</span><span className="pf-mono">{clock}</span></div>
+            <div className="pf-hm">
+              <Card k="hero" title="~/versachios">
+                <div className="pf-hero-top">
+                  <div className="pf-av" style={hasAvatar ? { backgroundImage: "url(/avatar.jpg)" } : undefined}>
+                    {!hasAvatar && "V"}
                   </div>
-                  <div className="pf-box pf-tilt">
-                    <h2>{t.stackH}</h2>
-                    {neofetch.filter((r) => r.key !== "Focus").map((r) => (
-                      <div className="pf-row" key={r.key}><span>{r.key}</span><span className="pf-mono">{r.value}</span></div>
-                    ))}
-                  </div>
-                  <div className="pf-box pf-tilt">
-                    <h2>{t.edH}</h2>
-                    {education.map((e) => (
-                      <div className="pf-sch" key={e.title}>
-                        <b>{e.title[0]}</b>
-                        <div><h3>{e.title}</h3><p className="pf-yr pf-mono">{e.years}</p><p>{e.body}</p></div>
-                      </div>
-                    ))}
+                  <div>
+                    <span className="pf-pill pf-mono">{clock}</span>
+                    <span className="pf-pill pf-mono">andao@archlinux</span>
                   </div>
                 </div>
+                <NameCycle text="Versachios" />
+                <p>{t.heroP}</p>
+                <div className="pf-now pf-mono">{t.nowL} → {fact("currently")}</div>
+              </Card>
 
-                <div className="pf-box">
-                  <h2 className="pf-h2m">{t.hey}</h2>
-                  <p>{t.heyP}</p>
-                  <h2 className="pf-h2m">{t.whyH}</h2>
-                  <p>{t.whyP}</p>
-                  <h2 className="pf-h2m">{t.projH}</h2>
-                  <div className="pf-pj">
-                    {projects.map((p) => (
-                      <div key={p.name}>
-                        <h3>{p.name.replace(/\/$/, "")}</h3>
-                        <p>{p.description}</p>
-                        <div className="pf-st pf-mono">{p.stack}</div>
-                        <div className="pf-lk">
-                          <a href={p.source} target="_blank" rel="noopener noreferrer">source ↗</a>
-                          <a href={p.live} target="_blank" rel="noopener noreferrer">live ↗</a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <h2 className="pf-h2m">{t.momH}</h2>
-                  <div className="pf-pols">
-                    {moments.map((m, i) => (
-                      <a
-                        key={m.file}
-                        className="pf-pol"
-                        href={`/moments/${m.file}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ transform: `rotate(${POLAROID_ROT[i % POLAROID_ROT.length]})` }}
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`/moments/${m.file}`} alt={m.caption} loading="lazy" />
-                        {m.caption}
-                      </a>
-                    ))}
-                  </div>
+              <Card k="links" title={t.findH}>
+                <div className="pf-lk">
+                  {contacts.map((c) => (
+                    <a
+                      key={c.label}
+                      href={c.href}
+                      {...(c.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      <span>{c.label}</span>
+                      <i className="pf-mono">{c.text} ↗</i>
+                    </a>
+                  ))}
+                  <Discord />
                 </div>
-              </div>
-            </section>
+              </Card>
+
+              <Card k="log" title={t.logGH}><Feed n={7} /></Card>
+
+              <Card k="sort" title={t.liveH}><MiniSort /></Card>
+
+              <Card k="mom" title={t.momH}>
+                <div className="pf-pols">
+                  {moments.map((m, i) => (
+                    <a
+                      key={m.file}
+                      className="pf-pol"
+                      href={`/moments/${m.file}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ transform: `rotate(${ROT[i % ROT.length]})` }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={`/moments/${m.file}`} alt={m.caption} loading="lazy" />
+                      {m.caption}
+                    </a>
+                  ))}
+                </div>
+              </Card>
+
+              <Card k="pj" title={t.projH}>
+                <div className="pf-pj">
+                  {projects.map((p) => (
+                    <div key={p.name}>
+                      <h3>{p.name.replace(/\/$/, "")}</h3>
+                      <p>{p.description}</p>
+                      <p className="pf-mono">{p.stack}</p>
+                      <a href={p.source} target="_blank" rel="noopener noreferrer">source ↗</a>
+                      <a href={p.live} target="_blank" rel="noopener noreferrer">live ↗</a>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </div>
           )}
 
           {tab === "about" && (
-            <section className="pf-view">
-              <div className="pf-box">
-                <h2 className="pf-h2m">{t.abH}</h2>
-                {aboutFacts.map((f) => (
-                  <div className="pf-row" key={f.key}><span>{f.key}</span><span>{f.value}</span></div>
+            <div className="pf-ab">
+              <Card k="a1" title={t.hey}>
+                <p>{t.heyP}</p>
+                <h3 className="pf-sub">{t.whyH}</h3>
+                <p>{t.whyP}</p>
+              </Card>
+              <Card k="a2" title={t.detH}>
+                <Row a={t.dFocus} b={fact("focus")} />
+                <Row a={t.dCountry} b="Vietnam" />
+                <Row a={t.dStatus} b={fact("status")} />
+                <Row a={t.dTime} b={clock} mono />
+              </Card>
+              <Card k="a3" title={t.stackH}>
+                {neofetch.filter((r) => r.key !== "Focus").map((r) => (
+                  <Row key={r.key} a={r.key} b={r.value} mono />
                 ))}
-              </div>
-              <div className="pf-box">
-                <h2 className="pf-h2m">{t.skillH}</h2>
-                {skillGroups.map((g) => (
-                  <div className="pf-row" key={g.label}>
-                    <span>{g.label}</span>
-                    <span className="pf-chips">
-                      {g.items.split(", ").map((s) => <i className="pf-chip" key={s}>{s}</i>)}
-                    </span>
+              </Card>
+              <Card k="a4" title={t.edH}>
+                {education.map((e) => (
+                  <div key={e.title}>
+                    <Row a={e.title.trim()} b={e.years} mono />
+                    <p className="pf-small">{e.body}</p>
                   </div>
                 ))}
-              </div>
-              <div className="pf-box">
-                <h2 className="pf-h2m">{t.msH}</h2>
-                <div className="pf-tl">
-                  {achievements.map((a) => (
-                    <article key={a.year}>
-                      <time className="pf-mono">{a.year}</time>
-                      <h3>{a.title}</h3>
-                      <p>{a.body}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-              <div className="pf-box">
-                <h2 className="pf-h2m">{t.goalH}</h2>
-                <p>{t.goalP}</p>
-              </div>
-            </section>
+              </Card>
+              <Card k="a5" title={t.skillH}>
+                {skillGroups.map((g) => (
+                  <Row
+                    key={g.label}
+                    a={g.label}
+                    b={g.items.split(", ").map((s) => <i className="pf-chip" key={s}>{s}</i>)}
+                  />
+                ))}
+              </Card>
+              <Card k="a6" title={t.goalH}><p>{t.goalP}</p></Card>
+            </div>
           )}
 
           {tab === "viz" && (
-            <section className="pf-view">
-              <div className="pf-box">
-                <h2 className="pf-h2m">{t.playH}</h2>
-                <p>{t.playP}</p>
-                <SortViz />
-              </div>
-            </section>
+            <div className="pf-hm">
+              <section className="pf-c pf-k-wide">
+                <div className="pf-tb"><b>{t.playH}</b></div>
+                <div className="pf-bd">
+                  <p>{t.playP}</p>
+                  <SortViz />
+                </div>
+              </section>
+            </div>
           )}
 
           {tab === "notes" && (
-            <section className="pf-view">
-              <div className="pf-box">
-                <h2 className="pf-h2m">{t.logH}</h2>
-                <div className="pf-tl">
-                  {notes.map((n) => (
-                    <article key={n.date + n.title}>
-                      <time className="pf-mono">{n.date} · {n.tag}</time>
-                      <h3>{n.title}</h3>
-                      <p>{n.body}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </section>
+            <div className="pf-hm">
+              <section className="pf-c pf-k-wide">
+                <div className="pf-tb"><b>{t.logH}</b></div>
+                <div className="pf-bd"><Feed n={99} /></div>
+              </section>
+            </div>
           )}
         </main>
 
-        <footer className="pf-foot">© 2026 Versachios · {t.foot}</footer>
+        <footer className="pf-foot pf-mono">© 2026 Versachios · {t.foot}</footer>
       </div>
     </div>
   );
