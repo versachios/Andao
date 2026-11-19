@@ -10,7 +10,7 @@ export function Ps1({ cwd = "~" }: { cwd?: string }) {
   );
 }
 
-/** A prompt line: `[andao@archlinux ~] $ <command>` */
+/** A prompt line: `[andao@k80it ~] $ <command>` */
 export function Cmd({
   as = "h2",
   children,

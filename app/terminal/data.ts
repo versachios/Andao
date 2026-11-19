@@ -28,7 +28,7 @@ export const education = [
   },
   {
     years: "2018–2023",
-    title: " Vo Thi Sau -> Huu Nghi Primary School",
+    title: " Huu Nghi Primary School",
     body: "First contact in Python. Now Song Da Primary School.",
   },
 ];
@@ -102,7 +102,7 @@ export const notes: Note[] = [
   {
     date: "2026-01-01",
     tag: "cp",
-    title: "Road to K81 IT",
+    title: "Road to K80 IT",
     body: "I have worked through a great many entrance exam papers for specialized schools across various provinces. I have learned so much, and this marks a major step toward getting into the school of my dreams.",
   },
   {
@@ -124,7 +124,7 @@ export const moments = [
   { file: "WA.png", caption: "Wrong Answer VNOI" },
   { file: "team26.jpg", caption: "ACADEMIC IT 2026" },
   { file: "genshinteapot.png", caption: "Sunset in my tea pot" },
-  { file: "amphoreus.png", caption: "Amphoreus in Algoverse" },
+  { file: "amphoreus.png", caption: "Amphoreus in beta version Algoverse" },
 ];
 
 export const achievements = [
