@@ -37,9 +37,9 @@ const FEED: FeedItem[] = [
   ...achievements.map((a) => ({ sort: `${a.year}-06-30`, label: a.year, tag: "win", title: a.title, body: a.body })),
 ].sort((a, b) => b.sort.localeCompare(a.sort));
 
-function Card({ k, title, children }: { k: string; title: string; children: ReactNode }) {
+function Card({ k, title, w, children }: { k: string; title: string; w?: boolean; children: ReactNode }) {
   return (
-    <section className={`pf-c pf-k-${k}`}>
+    <section className={`pf-c pf-k-${k}${w ? " pf-w" : ""}`}>
       <div className="pf-tb"><b>{title}</b></div>
       <div className="pf-bd">{children}</div>
     </section>
@@ -51,6 +51,27 @@ function Row({ a, b, mono }: { a: string; b: ReactNode; mono?: boolean }) {
     <div className="pf-row">
       <span>{a}</span>
       <span className={mono ? "pf-mono" : undefined}>{b}</span>
+    </div>
+  );
+}
+
+function Pols() {
+  return (
+    <div className="pf-pols">
+      {moments.map((m, i) => (
+        <a
+          key={m.file}
+          className="pf-pol"
+          href={`/moments/${m.file}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ transform: `rotate(${ROT[i % ROT.length]})` }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/moments/${m.file}`} alt={m.caption} loading="lazy" />
+          {m.caption}
+        </a>
+      ))}
     </div>
   );
 }
@@ -185,24 +206,7 @@ export default function Site() {
 
               <Card k="sort" title={t.liveH}><MiniSort /></Card>
 
-              <Card k="mom" title={t.momH}>
-                <div className="pf-pols">
-                  {moments.map((m, i) => (
-                    <a
-                      key={m.file}
-                      className="pf-pol"
-                      href={`/moments/${m.file}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ transform: `rotate(${ROT[i % ROT.length]})` }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={`/moments/${m.file}`} alt={m.caption} loading="lazy" />
-                      {m.caption}
-                    </a>
-                  ))}
-                </div>
-              </Card>
+              <Card k="mom" title={t.momH}><Pols /></Card>
 
               <Card k="pj" title={t.projH}>
                 <div className="pf-pj">
@@ -222,23 +226,23 @@ export default function Site() {
 
           {tab === "about" && (
             <div className="pf-ab">
-              <Card k="a1" title={t.hey}>
+              <Card w k="a1" title={t.hey}>
                 <p>{t.heyP}</p>
                 <h3 className="pf-sub">{t.whyH}</h3>
                 <p>{t.whyP}</p>
               </Card>
-              <Card k="a2" title={t.detH}>
+              <Card w k="a2" title={t.detH}>
                 <Row a={t.dFocus} b={fact("focus")} />
                 <Row a={t.dCountry} b="Vietnam" />
                 <Row a={t.dStatus} b={fact("status")} />
                 <Row a={t.dTime} b={clock} mono />
               </Card>
-              <Card k="a3" title={t.stackH}>
+              <Card w k="a3" title={t.stackH}>
                 {neofetch.filter((r) => r.key !== "Focus").map((r) => (
                   <Row key={r.key} a={r.key} b={r.value} mono />
                 ))}
               </Card>
-              <Card k="a4" title={t.edH}>
+              <Card w k="a4" title={t.edH}>
                 {education.map((e) => (
                   <div key={e.title}>
                     <Row a={e.title.trim()} b={e.years} mono />
@@ -246,16 +250,22 @@ export default function Site() {
                   </div>
                 ))}
               </Card>
-              <Card k="a5" title={t.skillH}>
+              <Card w k="a5" title={t.skillH}>
                 {skillGroups.map((g) => (
                   <Row
                     key={g.label}
                     a={g.label}
-                    b={g.items.split(", ").map((s) => <i className="pf-chip" key={s}>{s}</i>)}
+                    b={g.items.split(", ").map((x) => <i className="pf-chip" key={x}>{x}</i>)}
                   />
                 ))}
               </Card>
-              <Card k="a6" title={t.goalH}><p>{t.goalP}</p></Card>
+              <Card w k="a6" title={t.goalH}><p className="pf-bignow">{t.goalP}</p></Card>
+              <Card w k="a7" title={t.dTime}>
+                <div className="pf-clk pf-mono">{clock.replace(" ICT", "")}</div>
+                <p className="pf-small pf-mono">ICT · Vietnam</p>
+              </Card>
+              <Card w k="a8" title={t.nowL}><p className="pf-bignow">{fact("currently")}</p></Card>
+              <Card w k="a9" title={t.momH}><Pols /></Card>
             </div>
           )}
 
@@ -264,8 +274,10 @@ export default function Site() {
               <section className="pf-c pf-k-wide">
                 <div className="pf-tb"><b>{t.playH}</b></div>
                 <div className="pf-bd">
-                  <p>{t.playP}</p>
-                  <SortViz />
+                  <div className="pf-vz">
+                    <p className="pf-vzp">{t.playP}</p>
+                    <SortViz />
+                  </div>
                 </div>
               </section>
             </div>
@@ -275,7 +287,20 @@ export default function Site() {
             <div className="pf-hm">
               <section className="pf-c pf-k-wide">
                 <div className="pf-tb"><b>{t.logH}</b></div>
-                <div className="pf-bd"><Feed n={99} /></div>
+                <div className="pf-bd">
+                  <div className="pf-notes">
+                    {FEED.map((f) => (
+                      <article className="pf-note" key={f.sort + f.title}>
+                        <div className="pf-nh">
+                          <time className="pf-mono">{f.label}</time>
+                          <span className="pf-tg">{f.tag}</span>
+                        </div>
+                        <h3>{f.title}</h3>
+                        <p>{f.body}</p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
               </section>
             </div>
           )}
