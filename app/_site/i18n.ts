@@ -20,7 +20,7 @@ export const T = {
     heroP: "A Vietnamese student into competitive programming and web dev.", nowL: "now",
   },
   vi: {
-    nHome: "Trang chủ", nAbout: "Giới thiệu", nViz: "Trực quan", nNotes: "Ghi chép",
+    nHome: "Trang chủ", nAbout: "Giới thiệu", nViz: "Mô phỏng", nNotes: "Ghi chép",
     stat: "đang học, đang làm",
     detH: "✏️ Thông tin cá nhân", dFocus: "Tập trung", dCountry: "Quốc gia", dStatus: "Trạng thái", dTime: "Giờ địa phương",
     stackH: "💻 Môi trường", edH: "🎓 Học vấn",
@@ -30,7 +30,7 @@ export const T = {
     whyP: "Đây là xưởng làm việc chứ không phải CV: dự án đã xong, bài còn đang mắc, và những thử nghiệm chẳng đi đến đâu. Nó cập nhật theo cách mình hiểu thêm, không đều và thường là sau khi có thứ gì đó hỏng.",
     projH: "Dự án của mình", momH: "Khoảnh khắc",
     abH: "Giới thiệu", skillH: "Kỹ năng", msH: "Cột mốc", goalH: "Mục tiêu",
-    goalP: "Vào HVT, tiếp tục tiến bộ về giải thuật và làm ra những dự án dùng được ngay từ lần đầu.",
+    goalP: "Đỗ HVT, tiếp tục tiến bộ về giải thuật và làm ra những dự án dùng được ngay từ lần đầu.",
     playH: "Sắp xếp từng bước",
     playP: "Chọn thuật toán, xáo trộn các cột rồi xem nó sắp xếp. Cột vàng là cặp đang được so sánh.",
     logH: "Ghi chép", contactH: "Liên hệ", foot: "Làm bằng sự tò mò",

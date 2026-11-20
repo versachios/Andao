@@ -82,13 +82,19 @@ export type Note = { date: string; tag: "cp" | "project"; title: string; body: s
 // newest first, like git log
 export const notes: Note[] = [
   {
+    date: "2026-08-31",
+    tag: "project",
+    title: "Building Algoverse",
+    body: "As i struggle with algorithm, i created my own website to visualize for everyone to use and improve.",
+  },
+  {
     date: "2026-08-08",
     tag: "project",
     title: "Building HVTCoder",
     body: "Then it comes to building my first website. At first, it was just a small idea: a place where I could practice, submit code, and learn from my mistakes. But as I kept working on it, HVTCoder slowly became something much bigger, a platform built around my journey in competitive programming. It is far from perfect, but it is the first project that truly feels like my own.",
   },
   {
-    date: "2026-02-09",
+    date: "2026-02-07",
     tag: "cp",
     title: "The day I was overcome with happiness.",
     body: "I performed quite poorly on the provincial gifted student exam. Yet, when the results were announced, I had just enough points, by a margin of 0.05, to secure an award. I became the only student from a standard class, competing at a higher grade level, to win an award in that provincial competition.",
@@ -125,6 +131,7 @@ export const moments = [
   { file: "team26.jpg", caption: "ACADEMIC IT 2026" },
   { file: "genshinteapot.png", caption: "Sunset in my tea pot" },
   { file: "amphoreus.png", caption: "Amphoreus in beta version Algoverse" },
+  { file : "thaynam.jpg" , caption: "My IT teacher who loves writing books."}
 ];
 
 export const achievements = [
