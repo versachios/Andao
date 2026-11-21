@@ -18,7 +18,7 @@ export const aboutFacts = [
 export const education = [
   {
     years: "2027–2030",
-    title: " ? High School",
+    title: " High School",
     body: "Maybe Hoang Van Thu High School for the Gifted, who knows?",
   },
   {
@@ -77,15 +77,33 @@ export const projects: Project[] = [
   },
 ];
 
-export type Note = { date: string; tag: "cp" | "project"; title: string; body: string };
+export type Note = { date: string; tag: "cp" | "project" | "myself"; title: string; body: string };
 
 // newest first, like git log
 export const notes: Note[] = [
   {
+    date: "2026-11-21",
+    tag: "myself",
+    title: "Random Facts About Me #3",
+    body: "I'm no longer in my prime, and I miss the days when I was good at Competitive Programming. I might retire from CP soon.",
+  },
+  {
+    date: "2026-11-21",
+    tag: "myself",
+    title: "Random Facts About Me #2",
+    body: "In a world full of chaos and uncertainty, coding is the only place where I can find solace.",
+  },
+  {
+    date: "2026-11-20",
+    tag: "myself",
+    title: "Random Facts About Me #1",
+    body: "I've been fascinated by computers since I was two. I'm particularly passionate about operating systems, and I even managed to reinstall Windows on my own when I was ten, and later Linux at the age of 14.",
+  },
+  {
     date: "2026-08-31",
     tag: "project",
     title: "Building Algoverse",
-    body: "As i struggle with algorithm, i created my own website to visualize for everyone to use and improve.",
+    body: "Struggling with algorithms myself, I decided to build Algoverse — a platform designed to visualize complex concepts, make learning algorithms more intuitive, and help others improve their problem-solving skills.",
   },
   {
     date: "2026-08-08",
